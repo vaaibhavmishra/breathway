@@ -1,0 +1,33 @@
+{
+  "name": "route-lambda",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "build": "esbuild src/index.ts --bundle --platform=node --target=node22 --outfile=dist/index.js",
+    "build:ingest": "esbuild src/aqi/ingest.ts --bundle --platform=node --target=node22 --outfile=dist/ingest.js",
+    "test:spatial": "tsx --env-file=.env src/aqi/test-spatial.ts",
+    "test:aqi": "tsx --env-file=.env src/aqi/test-repository.ts",
+    "test:interpolation": "tsx --env-file=.env src/aqi/test-interpolation.ts",
+    "test:route-scoring": "tsx src/aqi/test-route-scoring.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "@aws-sdk/client-dynamodb": "^3.1148.0",
+    "@aws-sdk/client-geo-routes": "^3.1147.0",
+    "@aws-sdk/lib-dynamodb": "^3.1148.0",
+    "ngeohash": "^0.6.4"
+  },
+  "devDependencies": {
+    "@types/aws-lambda": "^8.10.164",
+    "@types/ngeohash": "^0.6.8",
+    "@types/node": "^26.6.4",
+    "esbuild": "^0.28.2",
+    "tsx": "^4.23.15",
+    "typescript": "^7.0.2"
+  }
+}
